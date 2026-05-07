@@ -57,7 +57,6 @@ def get_tasks_collection() -> Collection:
     return get_db()["tasks"]
 
 
-
 def _parse_db_name(uri: str) -> str:
     """
     Extract the database name from a MongoDB URI.

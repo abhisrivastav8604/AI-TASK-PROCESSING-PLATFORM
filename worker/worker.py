@@ -70,7 +70,6 @@ signal.signal(signal.SIGTERM, _handle_signal)
 signal.signal(signal.SIGINT, _handle_signal)
 
 
-
 def _create_redis_client(
     max_retries: int = 10,
     base_delay: float = BACKOFF_BASE,
@@ -124,7 +123,6 @@ def _create_redis_client(
     sys.exit(1)  # unreachable
 
 
-
 def _get_job_data(client: redis.Redis, job_id: str) -> Optional[dict]:
     """
     Retrieve the job payload from the BullMQ Redis hash.
@@ -167,7 +165,6 @@ def _fail_job(client: redis.Redis, job_id: str) -> None:
     client.lrem(BULL_ACTIVE_KEY, 0, job_id)
     client.zadd(BULL_FAILED_KEY, {job_id: time.time()})
     client.zremrangebyrank(BULL_FAILED_KEY, 0, -501)
-
 
 
 def run_worker() -> None:
@@ -246,7 +243,6 @@ def run_worker() -> None:
             time.sleep(1)
 
     log.info("Worker shut down cleanly.")
-
 
 
 if __name__ == "__main__":

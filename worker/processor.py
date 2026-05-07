@@ -22,7 +22,6 @@ from logger import get_logger
 log = get_logger("worker.processor")
 
 
-
 def _op_uppercase(text: str) -> str:
     return text.upper()
 
@@ -41,12 +40,11 @@ def _op_word_count(text: str) -> str:
 
 
 _OPERATION_HANDLERS: dict[str, Any] = {
-    "uppercase":  _op_uppercase,
-    "lowercase":  _op_lowercase,
-    "reverse":    _op_reverse,
+    "uppercase": _op_uppercase,
+    "lowercase": _op_lowercase,
+    "reverse": _op_reverse,
     "word_count": _op_word_count,
 }
-
 
 
 def process_task(task_id: str) -> None:
@@ -120,7 +118,6 @@ def process_task(task_id: str) -> None:
             "$set": {"status": "failed", "updatedAt": _now_dt()},
             "$push": {"logs": error_msg},
         })
-
 
 
 def _update_task(collection: Any, oid: ObjectId, update: dict) -> None:
