@@ -1,0 +1,19 @@
+[flake8]
+# Match the line length used across the codebase
+max-line-length = 100
+
+# Exclude virtual environments and cache directories
+exclude =
+    .venv,
+    venv,
+    __pycache__,
+    .git,
+    *.egg-info
+
+# Ignore rules that conflict with our style:
+# E501 is handled by max-line-length above
+# W503 (line break before binary operator) conflicts with Black formatter
+extend-ignore = W503
+
+# Files to check
+filename = *.py
