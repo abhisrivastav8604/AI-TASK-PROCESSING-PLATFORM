@@ -43,10 +43,10 @@ app.use(
 
 app.use(limiter);
 
-app.get('/health', (req, res) => res.status(200).json({ status: 'healthy' }));
-app.get('/ready', (req, res) => {
-  res.status(200).json({ status: 'ready' });
-});
+// Root health-check — Render probes HEAD / to detect an open port
+app.all('/', (req, res) => res.status(200).json({ success: true, message: 'Server is running' }));
+app.get('/health', (req, res) => res.status(200).json({ success: true, status: 'healthy' }));
+app.get('/ready', (req, res) => res.status(200).json({ success: true, status: 'ready' }));
 
 app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
@@ -62,7 +62,8 @@ const start = async () => {
 
   const server = http.createServer(app);
 
-  server.listen(PORT, () => {
+  // Bind to 0.0.0.0 so Render's port scanner can detect the open port
+  server.listen(PORT, '0.0.0.0', () => {
     logger.info(`Server running in ${NODE_ENV} mode on port ${PORT}`);
   });
 
