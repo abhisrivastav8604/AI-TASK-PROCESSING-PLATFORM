@@ -22,7 +22,9 @@ export function AuthProvider({ children }) {
       setUser(data.user);
       return { success: true };
     } catch (err) {
-      return { success: false, message: err.response?.data?.message || 'Login failed' };
+      const data = err.response?.data;
+      const msg = data?.message || data?.errors?.[0]?.msg || 'Login failed';
+      return { success: false, message: msg };
     } finally {
       setLoading(false);
     }
@@ -38,7 +40,9 @@ export function AuthProvider({ children }) {
       setUser(data.user);
       return { success: true };
     } catch (err) {
-      return { success: false, message: err.response?.data?.message || 'Registration failed' };
+      const data = err.response?.data;
+      const msg = data?.message || data?.errors?.[0]?.msg || 'Registration failed';
+      return { success: false, message: msg };
     } finally {
       setLoading(false);
     }
