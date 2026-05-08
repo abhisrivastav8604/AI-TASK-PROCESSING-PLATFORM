@@ -122,7 +122,6 @@ export default function AuthPage() {
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                 required
-                minLength={8}
               />
 
               {errorMsg && (
