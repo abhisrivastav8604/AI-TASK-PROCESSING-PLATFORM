@@ -7,7 +7,7 @@ WORKDIR /app
 COPY package.json package-lock.json* ./
 
 # Install ALL dependencies (including devDependencies for potential build steps)
-RUN npm ci --prefer-offline
+RUN npm install
 
 # Copy source code
 COPY . .
@@ -24,7 +24,7 @@ WORKDIR /app
 COPY --chown=node:node package.json package-lock.json* ./
 
 # Install only production dependencies
-RUN npm install --only=production
+RUN npm install --omit=dev
 
 # Copy application source (no node_modules from builder — we reinstalled above)
 COPY --chown=node:node src/ ./src/

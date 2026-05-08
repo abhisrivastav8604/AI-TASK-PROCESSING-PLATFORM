@@ -38,7 +38,7 @@ jobs:
           node-version: '22.x'
           cache: 'npm'
           cache-dependency-path: './frontend/package-lock.json'
-      - run: npm ci
+      - run: npm install
       - run: npm run lint
 
   lint-worker:
