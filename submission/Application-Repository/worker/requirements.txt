@@ -1,0 +1,14 @@
+# Worker service dependencies
+# Pin to exact versions for reproducible builds
+
+# Redis client — compatible with Redis 5.x–7.x
+redis==5.0.3
+
+# MongoDB driver
+pymongo==4.7.1
+
+# BSON utilities (ships with pymongo but listed explicitly for clarity)
+# pymongo already includes bson — no separate install needed
+
+# Environment variable loading (for local development without Docker)
+python-dotenv==1.0.1

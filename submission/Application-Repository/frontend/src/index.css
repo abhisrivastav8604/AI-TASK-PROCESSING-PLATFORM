@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary:      #0A0A0F;
+    --bg-secondary:    #0F0F1A;
+    --bg-card:         #13131F;
+    --bg-hover:        #1A1A2E;
+    --border:          #1E1E35;
+    --border-glow:     #2D2D5E;
+    --accent-primary:  #6366F1;
+    --accent-glow:     #818CF8;
+    --accent-cyan:     #06B6D4;
+    --accent-green:    #10B981;
+    --accent-yellow:   #F59E0B;
+    --accent-red:      #EF4444;
+    --text-primary:    #F1F5F9;
+    --text-secondary:  #94A3B8;
+    --text-muted:      #475569;
+    --text-code:       #A5F3FC;
+  }
+
+  body {
+    @apply bg-bg-primary text-text-primary font-sans antialiased;
+    background-image: radial-gradient(circle at center, var(--border) 1px, transparent 1px);
+    background-size: 24px 24px;
+    background-position: 0 0;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    background-color: rgba(19, 19, 31, 0.8); /* #13131F with 80% opacity */
+    @apply backdrop-blur-[12px] border border-border;
+  }
+  
+  .glow-card {
+    @apply transition-all duration-150 ease-out border border-border;
+  }
+  .glow-card:hover {
+    @apply transform -translate-y-[2px] bg-bg-hover;
+    box-shadow: 0 0 0 1px var(--accent-primary), 0 4px 20px rgba(99, 102, 241, 0.15);
+    border-color: var(--accent-primary);
+  }
+
+  .skeleton-shimmer {
+    background: linear-gradient(to right, var(--bg-card) 8%, var(--border) 18%, var(--bg-card) 33%);
+    background-size: 1000px 100%;
+    @apply animate-shimmer;
+  }
+  
+  .cyber-input {
+    @apply w-full bg-bg-secondary border border-border rounded-lg px-4 py-2.5 text-text-primary focus:outline-none focus:border-accent-primary focus:ring-1 focus:ring-accent-primary transition-colors;
+  }
+
+  .btn-solid {
+    @apply flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-accent-primary text-white font-medium transition-all duration-150 hover:bg-accent-glow hover:shadow-[0_0_15px_rgba(99,102,241,0.4)] active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:active:scale-100;
+  }
+  
+  .btn-ghost {
+    @apply flex items-center justify-center gap-2 px-3 py-2 rounded-lg text-text-secondary font-medium transition-colors hover:bg-bg-hover hover:text-text-primary active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-primary);
+}
+
+.thin-scrollbar::-webkit-scrollbar {
+  width: 2px;
+}
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--accent-primary);
+  border-radius: 1px;
+}
+
+.stagger-1 { animation-delay: 50ms; }
+.stagger-2 { animation-delay: 100ms; }
+.stagger-3 { animation-delay: 150ms; }
+.stagger-4 { animation-delay: 200ms; }
